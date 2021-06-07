@@ -1,8 +1,7 @@
 const { Router } = require("express");
+const { getGenres } = require("../controllers/genres.js");
 
 const router = Router();
-router.get("/", (req, res, next) => {
-    console.log("Probando ruta Genre")
-});
+router.get("/", getGenres);
 
 module.exports = router;
