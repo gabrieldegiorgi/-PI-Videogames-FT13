@@ -4,15 +4,21 @@ const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
 const { BASE_URL } = require("../../constants.js");
 const { API_KEY } = process.env;
+const {paginate} = require("../utils/index.js")
+
+
 
 function getGames(req, res, next) {
+  const {page} = req.query;
+  console.log(page)
   const GAMES_API = axios.get(`${BASE_URL}${API_KEY}`);
-  const GAMES_DB = Videogame.findAll({ include: Genre });
+  const GAMES_DB = Videogame.findAll({ include: Genre }); // Si quiero que me diga el genero al que pertenece el juego tengo que hacer el include
 
-  Promise.all([GAMES_API, GAMES_DB]).then((response) => {
+  Promise.all([GAMES_API, GAMES_DB]).then((response) => { //El promiseALL es para resolver las 2 promesas al mismo tiempo
     const [GAMES_API_RESPONSE, GAMES_DB_RESPONSE] = response;
     const array = GAMES_DB_RESPONSE.concat(GAMES_API_RESPONSE.data);
-    return res.send(array);
+    console.log(array)
+    return res.send(paginate(array[0].results, page));
   });
 }
 
