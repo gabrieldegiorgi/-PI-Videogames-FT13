@@ -1,13 +1,13 @@
 import axios from "axios";
 import dotenv from "dotenv";
-impS_LIST_FAIL,
+import{
   VIDEOGAME_CREATED_REQUEST,
   VIDEOGAME_CREATED_SUCCESS,
   VIDEOGAME_CREATED_FAIL,
-  VIDEOGAMES_DEort {
+  VIDEOGAMESS_LIST_FAIL,
   VIDEOGAMES_LIST_REQUEST,
   VIDEOGAMES_LIST_SUCCESS,
-  VIDEOGAMESTAILS_REQUEST,
+  VIDEOGAMES_DETAILS_REQUEST,
   VIDEOGAMES_DETAILS_SUCCESS,
   VIDEOGAMES_DETAILS_FAIL,
   VIDEOGAMES_SEARCH_REQUEST,
@@ -64,7 +64,7 @@ export const videogameSearch = (videogameName) => async (dispatch) => {
   console.log(videogameName);
   try {
     const { data } = await axios.get(
-      `${REACT_APP_BASE_URL}/?name=${pokemonName}`
+      `${REACT_APP_BASE_URL}/?name=${videogameName}`
     );
     console.log(data, "ok");
 
