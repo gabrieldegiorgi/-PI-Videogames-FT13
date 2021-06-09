@@ -7,8 +7,9 @@ const { REACT_APP_GET_GAMES } = process.env;
 
 function Cards() {
   useEffect(() => {
+    
     axios
-      .get(`https://cors-anywhere.herokuapp.com/${REACT_APP_GET_GAMES}`)
+      .get(`${REACT_APP_GET_GAMES}`)
       .then((response) => {
         console.log(response.data);
       })

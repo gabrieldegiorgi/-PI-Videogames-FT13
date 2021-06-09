@@ -13,19 +13,29 @@ server.use(express.json({ limit: "50mb" }));
 server.use(cookieParser());
 
 server.use(morgan("dev")); //MOrgan me da mas info sobre las solicitudes HTTP: GET, POST, PUT, DELETE
-server.use(
+/* server.use(
 	cors({
 		origin: "http://localhost:3000/",
 		credentials: true,
 		methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'],
 		allowedHeaders: ['Origin', 'X-Requested-With', 'Content-Type', 'Accept'],
 	})
-);
-server.use(function(req, res, next) {
+); */
+server.use(function(req,res,next){
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
+  res.header("Access-Control-Allow-Credentials", true);
+  next();
+});
+
+
+
+/* server.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
-});
+}); */
 
 server.use("/", routes);
 
