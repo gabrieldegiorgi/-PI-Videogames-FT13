@@ -17,15 +17,15 @@ import{
 
 dotenv.config();
 
-const { REACT_APP_GET_GAMES } = process.env;
+const { REACT_APP_BASE_URL, REACT_APP_GET_GAMES} = process.env;
 
 export const getVideogames = () => async (dispatch) => {
   dispatch({
     type: VIDEOGAMES_LIST_REQUEST,
   });
   try {
-    const { data } = await axios.get(`${REACT_APP_GET_GAMES}`);
-    console.log(data);
+    const { data } = await axios.get(`${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`);
+    
     dispatch({ type: VIDEOGAMES_LIST_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: VIDEOGAMESS_LIST_FAIL, payload: error.message });
@@ -38,7 +38,7 @@ export const createVideogame = () => async (dispatch) => {
   });
   try {
     const { data } = await axios.post(
-      `${REACT_APP_BASE_URL}`
+      `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`
     );
     dispatch({ type: VIDEOGAME_CREATED_SUCCESS, payload: data });
   } catch (error) {
@@ -50,7 +50,7 @@ export const getVideogameDetails = (videogameId) => async (dispatch) => {
   dispatch({ type: VIDEOGAMES_DETAILS_REQUEST });
   try {
     const { data } = await axios.get(
-      `${REACT_APP_BASE_URL}${videogameId}`
+      `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}/${videogameId}`
     );
     console.log(data);
     dispatch({ type: VIDEOGAMES_DETAILS_SUCCESS, payload: data });
@@ -64,7 +64,7 @@ export const videogameSearch = (videogameName) => async (dispatch) => {
   console.log(videogameName);
   try {
     const { data } = await axios.get(
-      `${REACT_APP_BASE_URL}/?name=${videogameName}`
+      `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}/?name=${videogameName}`
     );
     console.log(data, "ok");
 

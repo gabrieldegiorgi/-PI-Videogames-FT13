@@ -14,27 +14,35 @@ import {
 } from "../constants/index.js";
 
 const initialState = {
-  videogames: { loading: false, videogames: [] },
+  videogames: { loading: false, data: [] },
+  videogameDetails: { loading: false, data: {} },
+  videogameCreated: { loading: false, data: {} },
+  videogamesSearch: { loading: false, data: [] },
 };
 
 export const videogamesReducer = (state = initialState, action) => {
-  switch (action.type) {
+  switch (action.type) 
+  
+  //LIST GAMES
+  {
     case VIDEOGAMES_LIST_REQUEST:
       return {
         ...state,
         videogames: { loading: true },
       };
     case VIDEOGAMES_LIST_SUCCESS:
-      console.log(action.payload);
       return {
         ...state,
-        videogames: { loading: false, videogames: action.payload },
+        videogames: { loading: false, data: action.payload },
       };
     case VIDEOGAMESS_LIST_FAIL:
       return {
         ...state,
         videogames: { loading: false, error: action.payload },
       };
+
+      // CREATED GAME
+
     case VIDEOGAME_CREATED_REQUEST:
       return { ...state, videogames: { loading: true } };
     case VIDEOGAME_CREATED_SUCCESS:
@@ -47,6 +55,9 @@ export const videogamesReducer = (state = initialState, action) => {
         ...state,
         videogameCreated: { loading: false, error: action.payload },
       };
+
+      //DETAILS
+
     case VIDEOGAMES_DETAILS_REQUEST:
       return { ...state, videogameDetails: { loading: true } };
     case VIDEOGAMES_DETAILS_SUCCESS:
@@ -57,22 +68,22 @@ export const videogamesReducer = (state = initialState, action) => {
     case VIDEOGAMES_DETAILS_FAIL:
       return {
         ...state,
-        pokemonDetails: { loading: false, error: action.payload },
+        videogameDetails: { loading: false, error: action.payload },
       };
+
+      //SEARCH
+
     case VIDEOGAMES_SEARCH_REQUEST:
       return { ...state, videogames: { loading: true } };
     case VIDEOGAMES_SEARCH_SUCCESS:
       return {
         ...state,
-        videogamesSearch: {
-          loading: false,
-          videogamesSearch: [action.payload],
-        }, //Lo envuelvo entre [] porque para mapearlo tengo que mandarle un arreglo en vez de un {}
+        videogamesSearch: {loading: false, data: [action.payload]},//Lo envuelvo entre [] porque para mapearlo tengo que mandarle un arreglo en vez de un {}
       };
     case VIDEOGAMES_SEARCH_FAIL:
       return {
         ...state,
-        videogames: { loading: false, error: action.payload },
+        videogamesSearch: { loading: false, error: action.payload },
       };
 
     default:

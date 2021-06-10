@@ -4,7 +4,7 @@ import { videogamesReducer } from "../reducer/rootReducer.js";
 
 const initialState = {};
 const reducer = combineReducers({
-  videogames: videogamesReducer,
+  videogamesReducer,
 });
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

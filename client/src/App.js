@@ -5,8 +5,8 @@ import Section from "./Components/Section/Section.js";
 function App() {
   return (
     <div className="App">
-      <h1>Henry Videogames</h1>
-      <Navbar />
+      
+      <Navbar/>
       <Section />
     </div>
   );
