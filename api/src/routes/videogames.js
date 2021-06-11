@@ -4,7 +4,7 @@ const {getGames, searchGameById, searchGameByName, createGame} = require("../con
 const router = Router();
 router.get("/", getGames);
 router.get("/:id", searchGameById);
-router.get("/?=name", searchGameByName);
+/* router.get("?name=", searchGameByName); */
 router.post("/",createGame);
 
 
