@@ -1,5 +1,5 @@
 const { Router } = require("express");
-const {getGames, searchGameById, searchGameByName, createGame} = require("../controllers/videogames.js")
+const {getGames, searchGameById, createGame} = require("../controllers/videogames.js")
 
 const router = Router();
 router.get("/", getGames);

@@ -48,11 +48,13 @@ export const createVideogame = () => async (dispatch) => {
 
 export const getVideogameDetails = (videogameId) => async (dispatch) => {
   dispatch({ type: VIDEOGAMES_DETAILS_REQUEST });
+  console.log(videogameId, "Esto es el ID")
   try {
     const { data } = await axios.get(
+      /* console.log("Esta es la URL:", `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}/${videogameId}`) */
       `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}/${videogameId}`
     );
-    console.log(data);
+   /*  console.log("Esta es la data:", data); */
     dispatch({ type: VIDEOGAMES_DETAILS_SUCCESS, payload: data });
   } catch (error) {
     dispatch({ type: VIDEOGAMES_DETAILS_FAIL, payload: error.message });

@@ -22,7 +22,7 @@ const initialState = {
 
 export const videogamesReducer = (state = initialState, action) => {
   switch (action.type) 
-  
+
   //LIST GAMES
   {
     case VIDEOGAMES_LIST_REQUEST:
@@ -76,14 +76,15 @@ export const videogamesReducer = (state = initialState, action) => {
     case VIDEOGAMES_SEARCH_REQUEST:
       return { ...state, videogames: { loading: true } };
     case VIDEOGAMES_SEARCH_SUCCESS:
+     /*  console.log(action.payload) */
       return {
         ...state,
-        videogamesSearch: {loading: false, data: [action.payload]},//Lo envuelvo entre [] porque para mapearlo tengo que mandarle un arreglo en vez de un {}
+        videogames: {loading: false, data: action.payload},
       };
     case VIDEOGAMES_SEARCH_FAIL:
       return {
         ...state,
-        videogamesSearch: { loading: false, error: action.payload },
+        videogames: { loading: false, error: action.payload },
       };
 
     default:

@@ -6,7 +6,6 @@ import {videogameSearch} from "../../../Redux/actions"
 /* import axios from "axios";
 import dotenv from "dotenv"; */
 
-
 function Searchbar() {
 
   const dispatch = useDispatch()

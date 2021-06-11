@@ -14,21 +14,12 @@ function Cards({input}) {
 
   const dispatch = useDispatch();
   
-  const {data} = useSelector((state) => state.videogamesReducer.videogames);
+  const data = useSelector((state) => state.videogamesReducer.videogames.data);
   console.log(data, "Este es el estado")
 
 /*   const [videogames, setVideogames] = useState([]); */
 
-  useEffect(() => {    
-    /* 
-    axios
-      .get(`${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`)
-      .then((response) => {
-        console.log(response.data); //Arreglo de videojuegos
-        setVideogames(response.data);
-      })
-      .catch((error) => console.log(error)); */
-
+  useEffect(() => {        
       dispatch(getVideogames());
       
   }, []);  
