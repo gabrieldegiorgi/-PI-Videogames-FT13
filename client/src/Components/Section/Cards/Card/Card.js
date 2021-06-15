@@ -10,7 +10,7 @@ function Card({ videogame }) {
       
       <span>{videogame.name}</span>
       <span>{videogame.genres.map((g)=>g.name)}</span>
-     
+    
     </div>
 
     </Link>

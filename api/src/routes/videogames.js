@@ -7,10 +7,4 @@ router.get("/:id", searchGameById);
 /* router.get("?name=", searchGameByName); */
 router.post("/",createGame);
 
-
-
-
-
-
-
 module.exports = router;
