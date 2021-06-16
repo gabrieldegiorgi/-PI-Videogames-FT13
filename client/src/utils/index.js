@@ -44,3 +44,14 @@ export const paginate = (array, page) => {
     console.log("No cargo el array");
   }
 };
+
+export const sortAlphabeticallyAz = (a, b) =>{
+  if(a.name < b.name) return -1
+  if(b.name < a.name) return 1 
+  return 0
+}
+
+export const sortByRatingAsc = (a, b) =>{
+  return a.rating - b.rating
+}
+

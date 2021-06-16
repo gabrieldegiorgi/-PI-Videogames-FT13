@@ -1,3 +1,5 @@
+import { sortAlphabeticallyAz, sortByRatingAsc } from "../../utils/index.js";
+import { sortAlphabeticallyAsc } from "../actions/index.js";
 import {
   VIDEOGAMES_LIST_REQUEST,
   VIDEOGAMES_LIST_SUCCESS,
@@ -11,9 +13,15 @@ import {
   VIDEOGAMES_SEARCH_REQUEST,
   VIDEOGAMES_SEARCH_SUCCESS,
   VIDEOGAMES_SEARCH_FAIL,
+  SORT_BY_RATING_ASC,
+  SORT_BY_RATING_DESC,
+  SORT_ALPHABETICALLY_ASC,
+  SORT_ALPHABETICALLY_DESC,
+  FILTER_BY_GENRE,
 } from "../constants/index.js";
 
 const initialState = {
+  allVideogames: { loading: false, data: [] }, //Este estado es de referencia
   videogames: { loading: false, data: [] },
   videogameDetails: { loading: false, data: {} },
   videogameCreated: { loading: false, data: {} },
@@ -21,27 +29,28 @@ const initialState = {
 };
 
 export const videogamesReducer = (state = initialState, action) => {
-  switch (action.type) 
-
-  //LIST GAMES
-  {
+  switch (action.type) {
+    //LIST GAMES
     case VIDEOGAMES_LIST_REQUEST:
       return {
         ...state,
         videogames: { loading: true },
+        allVideogames: { loading: true },
       };
     case VIDEOGAMES_LIST_SUCCESS:
       return {
         ...state,
         videogames: { loading: false, data: action.payload },
+        allVideogames: { loading: false, data: action.payload },
       };
     case VIDEOGAMESS_LIST_FAIL:
       return {
         ...state,
         videogames: { loading: false, error: action.payload },
+        allVideogames: { loading: false, error: action.payload },
       };
 
-      // CREATED GAME
+    // CREATED GAME
 
     case VIDEOGAME_CREATED_REQUEST:
       return { ...state, videogames: { loading: true } };
@@ -56,7 +65,7 @@ export const videogamesReducer = (state = initialState, action) => {
         videogameCreated: { loading: false, error: action.payload },
       };
 
-      //DETAILS
+    //DETAILS
 
     case VIDEOGAMES_DETAILS_REQUEST:
       return { ...state, videogameDetails: { loading: true } };
@@ -71,15 +80,15 @@ export const videogamesReducer = (state = initialState, action) => {
         videogameDetails: { loading: false, error: action.payload },
       };
 
-      //SEARCH
+    //SEARCH
 
     case VIDEOGAMES_SEARCH_REQUEST:
       return { ...state, videogames: { loading: true } };
     case VIDEOGAMES_SEARCH_SUCCESS:
-     /*  console.log(action.payload) */
+      /*  console.log(action.payload) */
       return {
         ...state,
-        videogames: {loading: false, data: action.payload},
+        videogames: { loading: false, data: action.payload },
       };
     case VIDEOGAMES_SEARCH_FAIL:
       return {
@@ -89,5 +98,47 @@ export const videogamesReducer = (state = initialState, action) => {
 
     default:
       return state;
+
+    //ORDENAR POR RAITING
+
+    case SORT_BY_RATING_ASC: {
+      return {
+        ...state,
+        videogames: state.videogames.sort(sortByRatingAsc),
+      };
+    }
+    case SORT_BY_RATING_DESC: {
+      return {
+        ...state,
+        videogames: state.videogames.sort(sortByRatingAsc).reverse(),
+      };
+    }
+
+    //ORDENAR ALFABETICAMENTE
+
+    case SORT_ALPHABETICALLY_ASC: {
+      return {
+        ...state,
+        videogames: state.videogames.sort(sortAlphabeticallyAsc),
+      };
+    }
+    case SORT_ALPHABETICALLY_DESC: {
+      return {
+        ...state,
+        videogames: state.videogames.sort(sortAlphabeticallyAsc).reverse(),
+      };
+    }
+
+    //FILTER BY GENRE
+
+    case FILTER_BY_GENRE: {
+      console.log("esto es lo que llega del front",action.payload);
+      return {
+        ...state,
+        videogames: state.allVideogames.data.filter(
+          (v) => v.genres === action.payload
+        ),
+      };
+    }
   }
 };
