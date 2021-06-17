@@ -1,5 +1,7 @@
 import {
   filterByGenre,
+  orderByRating,
+  sortAlphabetically,
   sortAlphabeticallyAz,
   sortByRatingAsc,
 } from "../../utils/index.js";
@@ -110,7 +112,7 @@ export const videogamesReducer = (state = initialState, action) => {
         ...state,
         videogames: {
           loading: false,
-          data: state.videogames.data.sort(sortByRatingAsc),
+          data: orderByRating(state.videogames.data),
         },
       };
     }
@@ -119,7 +121,7 @@ export const videogamesReducer = (state = initialState, action) => {
         ...state,
         videogames: {
           loading: false,
-          data: state.videogames.data.sort(sortByRatingAsc).reverse(),
+          data: orderByRating(state.videogames.data).reverse(),
         },
       };
     }
@@ -131,7 +133,7 @@ export const videogamesReducer = (state = initialState, action) => {
         ...state,
         videogames: {
           loading: false,
-          data: state.videogames.data.sort(sortAlphabeticallyAsc),
+          data: sortAlphabetically(state.videogames.data),
         },
       };
     }
@@ -140,7 +142,7 @@ export const videogamesReducer = (state = initialState, action) => {
         ...state,
         videogames: {
           loading: false,
-          data: state.videogames.data.sort(sortAlphabeticallyAsc).reverse(),
+          data: sortAlphabetically(state.videogames.data).reverse(),
         },
       };
     }

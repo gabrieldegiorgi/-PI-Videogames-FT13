@@ -43,7 +43,34 @@ export const paginate = (array, page) => {
     console.log("No cargo el array");
   }
 };
+export const filterByGenre = (array, videogame) => {
+  //console.log("Entro aca")
+  if (array.includes(videogame.genres[0].name.toString().toLowerCase())) {
+    // console.log("Coincide")
+    return true;
+  }
+  /* console.log("NO coincide") */
+  return false;
+};
 
+export const sortAlphabetically = (array) => {
+  const alphabeticallyFiltered = [...array];
+  
+  alphabeticallyFiltered.sort((a, b) => (a.name < b.name ? 1 : -1));
+  
+  return alphabeticallyFiltered;
+};
+
+export const orderByRating = (array) => {
+  const ratingFiltered = [...array];
+  console.log(ratingFiltered, "esto es boca")
+  ratingFiltered.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+  
+  return ratingFiltered;
+
+};
+
+/* 
 export const sortAlphabeticallyAz = (a, b) => {
   if (a.name < b.name) return -1;
   if (b.name < a.name) return 1;
@@ -53,13 +80,4 @@ export const sortAlphabeticallyAz = (a, b) => {
 export const sortByRatingAsc = (a, b) => {
   return a.rating - b.rating;
 };
-
-export const filterByGenre = (array, videogame) => {
-  //console.log("Entro aca")
-  if (array.includes(videogame.genres[0].name.toString().toLowerCase())) {
-   // console.log("Coincide")
-    return true;
-  }
-  /* console.log("NO coincide") */
-  return false;
-};
+ */
