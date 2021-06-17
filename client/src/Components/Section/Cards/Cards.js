@@ -16,6 +16,7 @@ function Cards({ input }) {
   const [page, setPage] = useState(1);
 
   const data = useSelector((state) => state.videogamesReducer.videogames.data);
+  console.log("Esto es data", data)
 
   if (data) {
     var videogames = paginate(data, page);
@@ -43,7 +44,7 @@ function Cards({ input }) {
       <h3>Estas son las tarjetas</h3>
       {data &&
         data.length &&
-        data.map(
+        videogames.result.map(
           (
             videogame,
             index //EL INDEX ME SIRVE PARA PASARLE UN NUMERO DE MAPEO A CADA COMPONENTE QUE ESTOY MAPEANDO DEL ARREGLO

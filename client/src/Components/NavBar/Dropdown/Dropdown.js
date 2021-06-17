@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Dropdown.css";
-import onClickOutside from "react-onclickoutside";
 import { ImCheckboxChecked, ImCheckboxUnchecked } from "react-icons/im";
 import { MdKeyboardArrowDown, MdKeyboardArrowUp } from "react-icons/md";
 import {} from "react-icons/im";
@@ -9,7 +8,8 @@ function Dropdown({ title, items, multiselect, selection, setSelection }) {
   const [open, setOpen] = useState(false);
 
   const toggle = () => setOpen(!open);
-  Dropdown.handleClickOutside = () => setOpen(false);
+ /*  Dropdown.handleClickOutside = () =>{setOpen(false) */
+  /* console.log("Hice click")}  */
 
   // recordemos que some, checkea que almenos haya 1 item en el arreglo
 
@@ -84,8 +84,4 @@ function Dropdown({ title, items, multiselect, selection, setSelection }) {
   );
 }
 
-const ClickOutsideConfig = {
-  handleClickOutside: () => Dropdown.handleClickOutside,
-};
-
-export default onClickOutside(Dropdown, ClickOutsideConfig);
+export default Dropdown;
