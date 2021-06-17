@@ -1,4 +1,8 @@
-import { sortAlphabeticallyAz, sortByRatingAsc } from "../../utils/index.js";
+import {
+  filterByGenre,
+  sortAlphabeticallyAz,
+  sortByRatingAsc,
+} from "../../utils/index.js";
 import { sortAlphabeticallyAsc } from "../actions/index.js";
 import {
   VIDEOGAMES_LIST_REQUEST,
@@ -132,13 +136,29 @@ export const videogamesReducer = (state = initialState, action) => {
     //FILTER BY GENRE
 
     case FILTER_BY_GENRE: {
-      console.log("esto es lo que llega del front",action.payload);
+      //POR CADA JUEGO QUE HAY EN EL ESTADO DE VIDEOGAMES, VOY A PREGUNTAR SICOINCIDE CON EL ARREGLO QUE ME LLEGA DE PAYLOAD (QUE ES EL DROPDOWN)
+      //TENEMOS QUE DEVOLVER AQUEL QUE CUYO GENERO COINCIDE CON EL ACTION.PAYLOAD
+
+      /*  console.log("esto es lo que llega del front", action.payload);
+      console.log(
+        "Estos son los generos del juego",
+        state.allVideogames.data.length &&
+          state.allVideogames.data[3].genres[0].name.toString().toLowerCase()
+      );
+      if (
+        state.allVideogames.data.length &&
+        action.payload.includes(
+          state.allVideogames.data[3].genres[0].name.toString().toLowerCase()
+        )
+      ) {
+        console.log("Coincide");
+      } */
       return {
         ...state,
-        videogames: state.allVideogames.data.filter(
-          (v) => v.genres === action.payload
+        videogames: state.allVideogames.data.filter((v) =>
+          filterByGenre(action.payload, v)
         ),
-      };
+      }; //
     }
   }
 };

@@ -14,23 +14,22 @@ export const paginate = (array, page) => {
     if (startIndex > 0) {
       pagination.prev = page - 1; //2 //4
     }
-    if (endIndex < array.length ) {
+    if (endIndex < array.length) {
       //Si el indice de pokemons es mayor al arreglo ya no hay mas pokemons para mostrar
       pagination.next = page + 1; //4 // 6
     }
-    pagination.count = Math.ceil(array.length  / limit);
+    pagination.count = Math.ceil(array.length / limit);
     result.pagination = pagination;
     result.result = array.slice(startIndex, endIndex); //Voy a mostrar los pokemons desde el 16 hasta el 24 // 32 al 40
 
-    
-   /* pagination = {
+    /* pagination = {
     count: arreglo / limit ---> 3
     next: 1
     prev: 
 
     } */
 
-   /* result = {
+    /* result = {
     pagination: {
       count: arreglo / limit ---> 3
     }
@@ -45,13 +44,22 @@ export const paginate = (array, page) => {
   }
 };
 
-export const sortAlphabeticallyAz = (a, b) =>{
-  if(a.name < b.name) return -1
-  if(b.name < a.name) return 1 
-  return 0
-}
+export const sortAlphabeticallyAz = (a, b) => {
+  if (a.name < b.name) return -1;
+  if (b.name < a.name) return 1;
+  return 0;
+};
 
-export const sortByRatingAsc = (a, b) =>{
-  return a.rating - b.rating
-}
+export const sortByRatingAsc = (a, b) => {
+  return a.rating - b.rating;
+};
 
+export const filterByGenre = (array, videogame) => {
+  //console.log("Entro aca")
+  if (array.includes(videogame.genres[0].name.toString().toLowerCase())) {
+   // console.log("Coincide")
+    return true;
+  }
+  /* console.log("NO coincide") */
+  return false;
+};

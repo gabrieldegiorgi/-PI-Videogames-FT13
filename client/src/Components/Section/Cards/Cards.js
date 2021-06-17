@@ -41,8 +41,9 @@ function Cards({ input }) {
   return (
     <div className="cards">
       <h3>Estas son las tarjetas</h3>
-      {videogames &&
-        videogames.result.map(
+      {data &&
+        data.length &&
+        data.map(
           (
             videogame,
             index //EL INDEX ME SIRVE PARA PASARLE UN NUMERO DE MAPEO A CADA COMPONENTE QUE ESTOY MAPEANDO DEL ARREGLO

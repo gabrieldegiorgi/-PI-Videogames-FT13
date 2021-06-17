@@ -26,7 +26,7 @@ function Navbar() {
     var array = [];
     selection.map((e) => {
       ///selection comienza siendo un [] vacio. A medida que voy seleccionando generos, los voy mapeando en el array con la propiedad e-name
-      array = [...array, e.name];
+      array = [...array, e.name.toLowerCase()];
     });
     if (allVideogames) {
       dispatch(filterByGenre(array));
