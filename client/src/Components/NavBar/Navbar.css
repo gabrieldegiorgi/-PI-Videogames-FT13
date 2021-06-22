@@ -1,5 +1,10 @@
 .nav-bar{
-    border: 2px solid black;
+    border: 5px solid white;
     border-radius: 15%;
+    background-color: black;
+    color: white;
+    height: 100%;
+    margin-bottom: 20px;
+
     
 }
