@@ -1,20 +1,24 @@
 import React from "react";
-import { Link } from 'react-router-dom'
-import "./Card.css"
+import { Link } from "react-router-dom";
+import "./Card.css";
 
 function Card({ videogame }) {
   return (
-    <Link to= {`/card_details/${videogame.id}`}>    
-    <div className="card">
-      <div ><img className="videogameImg" src={videogame.background_image}></img></div>
-      
-      <span>{videogame.name}</span>
-      <span>{videogame.genres.map((g)=>g.name)}</span>
-    
-    </div>
+    <Link to={`/card_details/${videogame.id}`}>
+      <div className="card">
+        <div className="card-top">
+          <img className="videogameImg" src={videogame.background_image}></img>
+          <span>{videogame.name}</span>
+        </div>
 
+        <div className="card-bot">
+          <span>Generos:</span>
+          {videogame.genres.map((g) => (
+            <span>{g.name}</span>
+          ))}
+        </div>
+      </div>
     </Link>
-
   );
 }
 

@@ -3,8 +3,13 @@ import SearchBar from "./SearchBar/Searchbar.js";
 import "./Navbar.css";
 import Dropdown from "./Dropdown/Dropdown.js";
 import { useDispatch, useSelector } from "react-redux";
-import { filterByGenre, sortAlphabeticallyAsc, sortAlphabeticallyDesc, sortByRatingAsc, sortByRatingDesc } from "../../Redux/actions/index.js";
-
+import {
+  filterByGenre,
+  sortAlphabeticallyAsc,
+  sortAlphabeticallyDesc,
+  sortByRatingAsc,
+  sortByRatingDesc,
+} from "../../Redux/actions/index.js";
 
 const genres = [
   { id: 1, name: "Action" },
@@ -72,22 +77,30 @@ function Navbar() {
 
   return (
     <div className="nav-bar">
-      <h1>Henry Videogames</h1>
-      <SearchBar />
-      <Dropdown
-        title="Genre" //El dropdown multiselect funciona llenando a select a medida que el usuario selecciona generos
-        items={genres} //Los generos que le paso son los que estan declarados mas arriba en la constante
-        multiselect
-        selection={selection}
-        setSelection={setSelection}
-      />
+      <div className="left">
+        <h1>Henry Videogames</h1>
+        <SearchBar />
+      </div>
 
-      <Dropdown
-        title="Sort" //El dropdown multiselect funciona llenando a select a medida que el usuario selecciona generos
-        items={sort} //Los generos que le paso son los que estan declarados mas arriba en la constante
-        selection={sortSelected}
-        setSelection={setSortSelected}
-      />
+      <div className="drop-downs">
+        <div className="genre-drop-downs">
+          <Dropdown
+            title="Genre" //El dropdown multiselect funciona llenando a select a medida que el usuario selecciona generos
+            items={genres} //Los generos que le paso son los que estan declarados mas arriba en la constante
+            multiselect
+            selection={selection}
+            setSelection={setSelection}
+          />
+        </div>
+        <div className="sort-drop-downs">
+          <Dropdown
+            title="Sort" //El dropdown multiselect funciona llenando a select a medida que el usuario selecciona generos
+            items={sort} //Los generos que le paso son los que estan declarados mas arriba en la constante
+            selection={sortSelected}
+            setSelection={setSortSelected}
+          />
+        </div>
+      </div>
     </div>
   );
 }

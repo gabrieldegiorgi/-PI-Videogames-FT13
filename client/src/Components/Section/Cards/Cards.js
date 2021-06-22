@@ -41,7 +41,7 @@ function Cards({ input }) {
 
   return (
     <div className="cards">
-      <h3>Estas son las tarjetas</h3>
+      {/* <h3>Estas son las tarjetas</h3> */}
       {data &&
         data.length &&
         videogames.result.map(
@@ -50,6 +50,8 @@ function Cards({ input }) {
             index //EL INDEX ME SIRVE PARA PASARLE UN NUMERO DE MAPEO A CADA COMPONENTE QUE ESTOY MAPEANDO DEL ARREGLO
           ) => <Card key={index} videogame={videogame} input={input} />
         )}
+
+       <div className="button"> 
       {videogames && videogames.pagination.prev && (
         <button
           onClick={() => {
@@ -69,6 +71,7 @@ function Cards({ input }) {
           Siguiente
         </button>
       )}
+      </div>
     </div>
   );
 }

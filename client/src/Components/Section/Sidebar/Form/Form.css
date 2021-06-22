@@ -1,5 +1,6 @@
-.danger{
-    border: red 1px solid;
-
+.danger {
+  border: red 1px solid;
 }
-
+.form {
+  align-items: center;
+}

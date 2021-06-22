@@ -1,4 +1,8 @@
 .side-bar {
+  margin: 2px;
   width: 50rem;
-  background-color: red;
+  background-color: #343a41;
+  color: aliceblue;
+  border: none;
+  
 }

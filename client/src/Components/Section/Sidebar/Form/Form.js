@@ -26,7 +26,7 @@ function Form() {
   };
 
   return (
-    <div>
+    <div className="form">
       <form>
         <label>Nombre</label>
         <input

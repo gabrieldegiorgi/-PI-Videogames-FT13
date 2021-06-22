@@ -1,7 +1,13 @@
 .cards{
     display: flex;
     flex-wrap: wrap;
-    background-color:rgba(19, 18, 18, 0.541);
+    background-color: #343A41;   
+
+}
+.button{
+
+    display: flex;
+    align-items: center;
     
 
 }

@@ -1,6 +1,8 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {videogameSearch} from "../../../Redux/actions"
+import "./Searchbar.css"
+import { ImSearch } from "react-icons/im";
 
 /* import {useHistory}from "react-router-dom" */
 /* import axios from "axios";
@@ -20,8 +22,8 @@ function Searchbar() {
 
   return (
     <div className="search-bar">
-      <input value={input} onChange={(e) =>{onChangeHandler(e.target.value)}} placeholder="Busca tu videojuego"></input>
-      <button className="inputButton" type="submit" onClick={()=> {onClickHandler()}} >Buscar</button>
+      <input className="search-input" value={input} onChange={(e) =>{onChangeHandler(e.target.value)}} placeholder="Busca tu videojuego..."></input>
+      <button className="search-btn" type="submit" onClick={()=> {onClickHandler()}}><ImSearch/></button>
     </div>
   );
 }
