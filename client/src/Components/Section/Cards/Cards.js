@@ -16,7 +16,7 @@ function Cards({ input }) {
   const [page, setPage] = useState(1);
 
   const data = useSelector((state) => state.videogamesReducer.videogames.data);
-  console.log("Esto es data", data)
+  console.log("Esto es data", data);
 
   if (data) {
     var videogames = paginate(data, page);
@@ -40,37 +40,42 @@ function Cards({ input }) {
   //Loadash libreria
 
   return (
-    <div className="cards">
-      {/* <h3>Estas son las tarjetas</h3> */}
-      {data &&
-        data.length &&
-        videogames.result.map(
-          (
-            videogame,
-            index //EL INDEX ME SIRVE PARA PASARLE UN NUMERO DE MAPEO A CADA COMPONENTE QUE ESTOY MAPEANDO DEL ARREGLO
-          ) => <Card key={index} videogame={videogame} input={input} />
+    <div>
+      <div className="cards">
+        {/* <h3>Estas son las tarjetas</h3> */}
+        {data &&
+          data.length &&
+          videogames.result.map(
+            (
+              videogame,
+              index //EL INDEX ME SIRVE PARA PASARLE UN NUMERO DE MAPEO A CADA COMPONENTE QUE ESTOY MAPEANDO DEL ARREGLO
+            ) => <Card key={index} videogame={videogame} input={input} />
+          )}
+      </div>
+
+      <div className="buttons">
+        {videogames && videogames.pagination.prev && (
+          <div className="prev">
+            <button
+              onClick={() => {
+                pagination(videogames.pagination.prev);
+              }}
+            >
+              Anterior
+            </button>
+          </div>
         )}
-
-       <div className="button"> 
-      {videogames && videogames.pagination.prev && (
-        <button
-          onClick={() => {
-            pagination(videogames.pagination.prev);
-          }}
-        >
-          Anterior
-        </button>
-      )}
-
-      {videogames && videogames.pagination.next && (
-        <button
-          onClick={() => {
-            pagination(videogames.pagination.next);
-          }}
-        >
-          Siguiente
-        </button>
-      )}
+        {videogames && videogames.pagination.next && (
+          <div className="follow">
+            <button
+              onClick={() => {
+                pagination(videogames.pagination.next);
+              }}
+            >
+              Siguiente
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

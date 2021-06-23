@@ -11,15 +11,27 @@
   border-radius: 0.5rem;
   justify-content: space-between;
 }
+.card-top{
+    font-weight:bold
+}
 .card-bot {
   display: flex;
   flex-direction: column;
   margin-bottom: 1.5rem;
-}
+  text-decoration: underline;
+ }
+ .card-bot-genre{
+    display: flex;
+    flex-direction: column;
+     font-size: 15px;
+    font-family:Tahoma ;
+    font-style: italic;
+    text-decoration: none;
+ }
 
 .videogameImg {
   width: 100%;
-  
+
   min-height: 10rem;
   max-height: 10rem;
   border-radius: 10%;

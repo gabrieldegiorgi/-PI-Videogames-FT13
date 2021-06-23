@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getVideogameDetails } from "../../../Redux/actions";
 import { useParams } from "react-router-dom";
+import "./CardDetail.css";
 
 function CardDetail() {
   const dispatch = useDispatch();
@@ -14,26 +15,48 @@ function CardDetail() {
     data = videogame;
   }
   const { id } = useParams();
-  console.log("Aguante la falopa", id);
 
   useEffect(() => {
     dispatch(getVideogameDetails(id));
   }, []);
   console.log("Esta es la data POSTA", videogame);
   return (
-    <div>
+    <div className="card-detail">
       {data && (
         <div>
-          <img className="videogameImg" src={data.background_image}></img>
-          <span>{data.name}</span>
-          {<span>{data.genres && data.genres.map((g) => g.name)}</span>}
+          <div>
+            <img className="card-detail-img" src={data.background_image}></img>
+          </div>
+          <div className="card-detail-name">
+            <span>{data.name}</span>
+          </div>
+          <div className="card-detail-genre">
+            {<span>{data.genres && data.genres.map((g) => g.name)}</span>}
+          </div>
 
           <span>{data.description}</span>
+          <div>
+            <span className="card-detail-platforms">
+              <h3>Plataformas:</h3>
+              {data.platforms &&
+                data.platforms.map((p) => (
+                  <span className="card-detail-platform">
+                    {" "}
+                    {p.platform.name}
+                  </span>
+                ))}
+            </span>
+          </div>
           <span>
-            {data.platforms && data.platforms.map((p) => p.platform.name)}
+            <h3>Lanzamiento:</h3>
+            {data.updated}
           </span>
-          <span>{data.updated}</span>
-          {<span>{data.ratings && data.ratings.map((r) => r.title)}</span>}
+          {
+            <span>
+              <h3>Opiniones:</h3>
+              {data.ratings && data.ratings.map((r) => r.title)}
+            </span>
+          }
         </div>
       )}
     </div>

@@ -9,11 +9,9 @@ require("dotenv").config();
 const { REACT_APP_BASE_URL, REACT_APP_GET_GAMES } = process.env;
 
 function App() {
+  //PAGINADO VIDEO YOUTUBE
 
-
-//PAGINADO VIDEO YOUTUBE
-
- /*  const [posts, setPosts] = useState([]);
+  /*  const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage, setPostsPerPage] = useState(15);
@@ -30,7 +28,6 @@ function App() {
     fetchPosts()
   },[]); 
   console.log(posts, "Estos son los posts")*/
-
 
   return (
     <Router>

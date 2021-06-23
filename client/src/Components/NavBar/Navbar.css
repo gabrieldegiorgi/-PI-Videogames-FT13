@@ -14,11 +14,13 @@
 }
 
 .drop-downs {
-  display: flex; 
+  display: flex;
 }
 .genre-drop-downs {
   margin: 0 1rem;
 }
 .sort-drop-downs {
   margin: 0 1rem;
+  justify-content: space-between;
+  align-items: center;
 }

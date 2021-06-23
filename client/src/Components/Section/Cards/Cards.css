@@ -1,13 +1,39 @@
-.cards{
-    display: flex;
-    flex-wrap: wrap;
-    background-color: #343A41;   
-
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #343a41;
 }
-.button{
+.buttons {
+  display: flex;
+  flex-direction:row;
+  justify-content: center;
+  background-color: #343a41;
+  height: 3rem;
+  width: 100%;  
+  color: white;  
+  align-items: center;
+}
 
-    display: flex;
-    align-items: center;
-    
-
+.prev {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: black;
+  height: 3rem;
+  width: 5rem;
+  border-radius: 15px;
+  margin: 1rem;
+  font-weight:bold
+  
+}
+.follow {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background-color: black;
+  height: 3rem;
+  width: 5rem;
+  border-radius: 15px;
+  margin: 1rem;
+  font-weight:bold
 }

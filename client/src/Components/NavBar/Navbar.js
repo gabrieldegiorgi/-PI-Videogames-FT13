@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar/Searchbar.js";
 import "./Navbar.css";
 import Dropdown from "./Dropdown/Dropdown.js";
+/* import { FaSortAlphaDown } from "react-icons/fa"; */
 import { useDispatch, useSelector } from "react-redux";
 import {
   filterByGenre,
