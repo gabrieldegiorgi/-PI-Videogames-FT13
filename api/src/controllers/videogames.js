@@ -9,8 +9,8 @@ const { paginate } = require("../utils/index.js");
 function getGames(req, res, next) {
   const { page } = req.query;
   const { name } = req.query;
-  console.log(name, "Este es el name");
   if (name) {
+    console.log(name, "Este es el name");
     return axios
       .get(`${BASE_URL}?search=${name}&page_size=40&${API_KEY}`)
       .then((response) => {
@@ -18,18 +18,26 @@ function getGames(req, res, next) {
       })
       .catch((error) => res.send(error));
   }
-
   console.log(page);
-  const GAMES_API = axios.get(`${BASE_URL}?page_size=40&${API_KEY}`);
-  const GAMES_DB = Videogame.findAll({ include: Genre }); // Si quiero que me diga el genero al que pertenece el juego tengo que hacer el include
+  const GAMES_API = axios.get(`${BASE_URL}?page_size=10&${API_KEY}`);
+  const GAMES_DB = Videogame.findAll(/* { include: Genre } */); // Si quiero que me diga el genero al que pertenece el juego tengo que hacer el include
 
-  Promise.all([GAMES_API, GAMES_DB]).then((response) => {
-    //El promiseAll es para resolver las 2 promesas al mismo tiempo
-    const [GAMES_API_RESPONSE, GAMES_DB_RESPONSE] = response;
-    const array = GAMES_DB_RESPONSE.concat(GAMES_API_RESPONSE.data);
-    /*  console.log(array) */
-    return res.send(array[0].results);
-  });
+  Promise.all([GAMES_API, GAMES_DB])
+    .then((response) => {
+      //El promiseAll es para resolver las 2 promesas al mismo tiempo
+      let [GAMES_API_RESPONSE, GAMES_DB_RESPONSE] = response; //En esta linea ejecuta las 2 promesas con el response y guarda los valores en GAMES_API_RESPONSE y en GAMES_DB_RESPONSE
+      var videogames = []; // Creo un arreglo vacio donde voy a juntar GAMES_API_RESPONSE y GAMES DB_RESPONSE
+      videogames = GAMES_DB_RESPONSE.map((v) => v.dataValues); //Como la info que hay en GAMES DB esta guardada de una forma particular, logro acceder con el .map y la guardo en videgoames"
+     /*  console.log("Estos son los videogames", videogames); */
+
+      var array = videogames.concat(GAMES_API_RESPONSE.data.results); //En array concateno la info que tengo en videogames con la de GAMES_API_RESPONSE (El.data es porque para acceder a la informacion necesito hacerlo de esa manera)
+      /*  console.log(array); */
+      console.log("Aca esta el resultado", array);
+      /* cconsole.log("Lo que viene de la API", GAMES_API_RESPONSE);*/
+      /* console.log("Lo que viene de la DB", GAMES_DB_RESPONSE); */
+      return res.send(array);
+    })
+    .catch((error) => console.log(error));
 }
 
 function searchGameById(req, res, next) {
@@ -46,33 +54,20 @@ function searchGameById(req, res, next) {
   }
 }
 
-/* function searchGameByName(req, res, next) {
-  const { name } = req.query;
-  console.log(name, "Este es el name")
-  if (name) {
-    return axios
-      .get(`${BASE_URL}?search=${name}${API_KEY}`)
-      .then((response) => {
-        res.send(response.data);
-      })
-      .catch((error) => res.send(error));
-  }
-} */
-
 function createGame(req, res, next) {
-  const { name, description, date, rating, platforms } = req.body;
+  const { name, description, date, rating } = req.body;
+  console.log(req.body, "entre aca");
   const newGame = {
     id: uuidv4(),
     name,
     description,
     date,
     rating,
-    platforms,
   };
 
   return Videogame.create(newGame)
     .then((response) => {
-      res.send(response.dataValues);
+      return res.send(response.dataValues);
     })
     .catch((error) => res.send(error));
 }

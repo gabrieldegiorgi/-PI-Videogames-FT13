@@ -18,7 +18,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: black;
+  background-color:#26272e;
   height: 3rem;
   width: 5rem;
   border-radius: 15px;
@@ -30,7 +30,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: black;
+  background-color: #26272e;
   height: 3rem;
   width: 5rem;
   border-radius: 15px;

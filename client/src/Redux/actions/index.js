@@ -39,13 +39,13 @@ export const getVideogames = () => async (dispatch) => {
   }
 };
 
-export const createVideogame = () => async (dispatch) => {
+export const createVideogame = (videogame) => async (dispatch) => {
   dispatch({
     type: VIDEOGAME_CREATED_REQUEST,
   });
   try {
     const { data } = await axios.post(
-      `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`
+      `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`,videogame
     );
     dispatch({ type: VIDEOGAME_CREATED_SUCCESS, payload: data });
   } catch (error) {

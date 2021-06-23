@@ -59,7 +59,7 @@ export const videogamesReducer = (state = initialState, action) => {
     // CREATED GAME
 
     case VIDEOGAME_CREATED_REQUEST:
-      return { ...state, videogames: { loading: true } };
+      return { ...state, videogameCreated: { loading: true } };
     case VIDEOGAME_CREATED_SUCCESS:
       return {
         ...state,

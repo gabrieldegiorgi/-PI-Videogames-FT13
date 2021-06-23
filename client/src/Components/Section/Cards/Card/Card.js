@@ -13,7 +13,7 @@ function Card({ videogame }) {
 
         <div>
           <span className="card-bot">Generos:</span>
-          {videogame.genres.map((g) => (
+          {videogame.genres && videogame.genres.map((g) => (
             <span className="card-bot-genre">{g.name}</span>
           ))}
         </div>
