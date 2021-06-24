@@ -36,7 +36,7 @@ function Form({ showModal, setShowModal }) {
   useEffect(() => {
     var array = [];
 
-    array = genresSelected.map((g) => g.name);
+    array = genresSelected.map((g) => g);
 
     console.log(input.genres);
 

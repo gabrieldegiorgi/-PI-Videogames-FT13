@@ -4,7 +4,6 @@ const { v4: uuidv4 } = require("uuid");
 const axios = require("axios");
 const { BASE_URL } = require("../../constants.js");
 const { API_KEY } = process.env;
-const { paginate } = require("../utils/index.js");
 
 function getGames(req, res, next) {
   const { page } = req.query;
@@ -66,13 +65,22 @@ function createGame(req, res, next) {
     genres,
     platforms,
   };
-  /* console.log("Este es el newGame", newGame); */
 
-  return Videogame.create(newGame)
-    .then((response) => {
-      return res.send(response.dataValues);
+  Videogame.create(newGame)
+    .then((videogame) => {
+      genres.forEach((g) =>
+        Genre.findByPk(g.id)
+          .then((resp) => {
+            console.log(resp);
+
+            videogame.addGenre(resp);
+          })
+          .catch((err) => console.log(err))
+      );
     })
-    .catch((error) => res.send(error));
+    .catch((error) => console.log(error));
+
+    
 }
 
 module.exports = { getGames, searchGameById, createGame };
