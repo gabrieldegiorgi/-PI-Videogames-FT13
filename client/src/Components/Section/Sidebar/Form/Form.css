@@ -43,3 +43,8 @@
   margin-top: 10rem;
   cursor: pointer
 }
+
+.row-element{
+  display: flex;
+
+}
