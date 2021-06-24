@@ -2,15 +2,16 @@
   display: flex;
   flex-wrap: wrap;
   background-color: #343a41;
+  padding: 0 5%;
 }
 .buttons {
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   justify-content: center;
   background-color: #343a41;
   height: 3rem;
-  width: 100%;  
-  color: white;  
+  width: 100%;
+  color: white;
   align-items: center;
 }
 
@@ -18,13 +19,12 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color:#26272e;
+  background-color: #26272e;
   height: 3rem;
   width: 5rem;
   border-radius: 15px;
   margin: 1rem;
-  font-weight:bold
-  
+  font-weight: bold;
 }
 .follow {
   display: flex;
@@ -35,5 +35,14 @@
   width: 5rem;
   border-radius: 15px;
   margin: 1rem;
-  font-weight:bold
+  font-weight: bold;
+}
+
+.follow:hover {
+  background-color: white;
+  color: #26272e;
+}
+.prev:hover {
+  background-color: white;
+  color: #26272e;
 }

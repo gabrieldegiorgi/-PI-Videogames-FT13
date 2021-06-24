@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import SearchBar from "./SearchBar/Searchbar.js";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 import Dropdown from "../Dropdown/Dropdown.js";
 /* import { FaSortAlphaDown } from "react-icons/fa"; */
@@ -12,7 +13,6 @@ import {
   sortByRatingDesc,
 } from "../../Redux/actions/index.js";
 
-
 const sort = [
   { id: 1, name: "A-Z" },
   { id: 2, name: "Z-A" },
@@ -21,7 +21,6 @@ const sort = [
 ];
 
 function Navbar() {
-
   const genres = useSelector((state) => state.videogamesReducer.genres.data);
   const allVideogames = useSelector(
     (state) => state.videogamesReducer.allVideogames.data
@@ -73,7 +72,10 @@ function Navbar() {
   return (
     <div className="nav-bar">
       <div className="left">
-        <h1>Henry Videogames</h1>
+        <Link to="/">
+          <h1 className="h1">Henry Videogames</h1>
+        </Link>
+
         <SearchBar />
       </div>
 
@@ -81,7 +83,7 @@ function Navbar() {
         <div className="genre-drop-downs">
           <Dropdown
             title="Genre" //El dropdown multiselect funciona llenando a select a medida que el usuario selecciona generos
-            items={genres && genres } //Los generos que le paso son los que estan declarados mas arriba en la constante
+            items={genres && genres} //Los generos que le paso son los que estan declarados mas arriba en la constante
             multiselect
             selection={selection}
             setSelection={setSelection}

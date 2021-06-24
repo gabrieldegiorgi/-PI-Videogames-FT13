@@ -1,17 +1,28 @@
 .side-bar {
-  margin: 2px;
-  width: 50rem;
+  
+  width: 35rem;
   background-color: #343a41;
   color: aliceblue;
   border: none;
 }
 
 .create-button{
-  border: 2px solid white;
+border: 2px solid white;
 border-radius: 5px;
-margin-top: 2rem;
+margin-top: 5rem;
 background-color: black;
 color: white;
 padding: 1rem;
 font-weight: bold;
+margin-left: 1rem;
+margin-right: 1rem;
+justify-content: center;
+align-items: center;
+width: 10rem;
+margin-left: 4rem;
+}
+
+.create-button:hover{
+  background-color: white;
+  color: #26272e;
 }
