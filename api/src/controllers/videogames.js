@@ -20,7 +20,7 @@ function getGames(req, res, next) {
   }
   console.log(page);
   const GAMES_API = axios.get(`${BASE_URL}?page_size=10&${API_KEY}`);
-  const GAMES_DB = Videogame.findAll(/* { include: Genre } */); // Si quiero que me diga el genero al que pertenece el juego tengo que hacer el include
+  const GAMES_DB = Videogame.findAll({ include: Genre }); // Si quiero que me diga el genero al que pertenece el juego tengo que hacer el include
 
   Promise.all([GAMES_API, GAMES_DB])
     .then((response) => {
@@ -28,7 +28,7 @@ function getGames(req, res, next) {
       let [GAMES_API_RESPONSE, GAMES_DB_RESPONSE] = response; //En esta linea ejecuta las 2 promesas con el response y guarda los valores en GAMES_API_RESPONSE y en GAMES_DB_RESPONSE
       var videogames = []; // Creo un arreglo vacio donde voy a juntar GAMES_API_RESPONSE y GAMES DB_RESPONSE
       videogames = GAMES_DB_RESPONSE.map((v) => v.dataValues); //Como la info que hay en GAMES DB esta guardada de una forma particular, logro acceder con el .map y la guardo en videgoames"
-     /*  console.log("Estos son los videogames", videogames); */
+      /*  console.log("Estos son los videogames", videogames); */
 
       var array = videogames.concat(GAMES_API_RESPONSE.data.results); //En array concateno la info que tengo en videogames con la de GAMES_API_RESPONSE (El.data es porque para acceder a la informacion necesito hacerlo de esa manera)
       /*  console.log(array); */
@@ -55,15 +55,18 @@ function searchGameById(req, res, next) {
 }
 
 function createGame(req, res, next) {
-  const { name, description, date, rating } = req.body;
-  console.log(req.body, "entre aca");
+  const { name, description, date, rating, genres, platforms } = req.body;
+
   const newGame = {
     id: uuidv4(),
     name,
     description,
     date,
     rating,
+    genres,
+    platforms,
   };
+  console.log("Este es el newGame", newGame);
 
   return Videogame.create(newGame)
     .then((response) => {

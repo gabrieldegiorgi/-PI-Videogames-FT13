@@ -6,15 +6,32 @@ const { GENRE_URL } = require("../../constants.js");
 const { API_KEY } = process.env;
 
 function getGenres(req, res, next) {
-  const GENRES_API = axios.get(`${GENRE_URL}${API_KEY}`);
+  Genre.findAll({ include: Videogame })
+    .then((genres) => {
+      if (!genres.length) {
+        axios
+          .get(`${GENRE_URL}?${API_KEY}`)
+          .then((response) => {
+            console.log(
+              "Esto es la respuesta de los generos",
+              response.data.results
+            );
+            const array = [];
+            response.data.results.forEach((g) => {
+              array.push({
+                id: uuidv4(),
+                name: g.name,
+              });
+            });
 
-  return GENRES_API.then((response) => {
-    res.send(response.data);
-  }).catch((error) => {
-    res.send(error);
-  });
+            Genre.bulkCreate(array, { returnig: true })
+              .then((data) => res.send(data))
+              .catch((error) => console.log(error));
+          })
+          .catch((error) => console.log(error));
+      }
+    })
+    .catch((error) => console.log(error));
 }
 
-
-
-module.exports = {getGenres}
+module.exports = { getGenres };
