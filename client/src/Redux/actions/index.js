@@ -4,9 +4,6 @@ import {
   VIDEOGAME_CREATED_REQUEST,
   VIDEOGAME_CREATED_SUCCESS,
   VIDEOGAME_CREATED_FAIL,
-  VIDEOGAMESS_LIST_FAIL,
-  VIDEOGAMES_LIST_REQUEST,
-  VIDEOGAMES_LIST_SUCCESS,
   VIDEOGAMES_DETAILS_REQUEST,
   VIDEOGAMES_DETAILS_SUCCESS,
   VIDEOGAMES_DETAILS_FAIL,
@@ -18,24 +15,47 @@ import {
   SORT_ALPHABETICALLY_ASC,
   SORT_ALPHABETICALLY_DESC,
   FILTER_BY_GENRE,
+  SET_GENRES_REQUEST,
+  SET_GENRES_SUCCESS,
+  SET_GENRES_FAIL,
+  SET_VIDEOGAMES_SUCCESS,
+  SET_VIDEOGAMES_FAIL,
+  SET_VIDEOGAMES_REQUEST,
 } from "../constants/index.js";
 
 dotenv.config();
 
-const { REACT_APP_BASE_URL, REACT_APP_GET_GAMES } = process.env;
+const { REACT_APP_BASE_URL, REACT_APP_GET_GAMES, REACT_APP_GET_GENRES } =
+  process.env;
+
+// BUSCO LOS VIDEOJUEGOS
 
 export const getVideogames = () => async (dispatch) => {
   dispatch({
-    type: VIDEOGAMES_LIST_REQUEST,
+    type: SET_VIDEOGAMES_REQUEST,
   });
   try {
     const { data } = await axios.get(
       `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`
     );
-
-    dispatch({ type: VIDEOGAMES_LIST_SUCCESS, payload: data });
+    dispatch({ type: SET_VIDEOGAMES_SUCCESS, payload: data });
   } catch (error) {
-    dispatch({ type: VIDEOGAMESS_LIST_FAIL, payload: error.message });
+    dispatch({ type: SET_VIDEOGAMES_FAIL, payload: error.message });
+  }
+
+  //BUSCO LOS GENEROS
+
+  dispatch({
+    type: SET_GENRES_REQUEST,
+  });
+  try {
+    const { data } = await axios.get(
+      `${REACT_APP_BASE_URL}${REACT_APP_GET_GENRES}`
+    );
+    console.log(data, "Estos son los generos")
+    dispatch({ type: SET_GENRES_SUCCESS, payload: data });
+  } catch (error) {
+    dispatch({ type: SET_GENRES_FAIL, payload: error.message });
   }
 };
 
@@ -45,7 +65,8 @@ export const createVideogame = (videogame) => async (dispatch) => {
   });
   try {
     const { data } = await axios.post(
-      `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`,videogame
+      `${REACT_APP_BASE_URL}${REACT_APP_GET_GAMES}`,
+      videogame
     );
     dispatch({ type: VIDEOGAME_CREATED_SUCCESS, payload: data });
   } catch (error) {
@@ -111,8 +132,8 @@ export const sortAlphabeticallyDesc = () => (dispatch) => {
 //// FILTRO POR GENERO
 
 export const filterByGenre = (payload) => (dispatch) => {
-  console.log(payload)
-  dispatch ({
+  console.log(payload);
+  dispatch({
     type: FILTER_BY_GENRE,
     payload: payload,
   });

@@ -10,7 +10,7 @@ function getGames(req, res, next) {
   const { page } = req.query;
   const { name } = req.query;
   if (name) {
-    console.log(name, "Este es el name");
+    /* console.log(name, "Este es el name"); */
     return axios
       .get(`${BASE_URL}?search=${name}&page_size=40&${API_KEY}`)
       .then((response) => {
@@ -19,7 +19,7 @@ function getGames(req, res, next) {
       .catch((error) => res.send(error));
   }
   console.log(page);
-  const GAMES_API = axios.get(`${BASE_URL}?page_size=10&${API_KEY}`);
+  const GAMES_API = axios.get(`${BASE_URL}?page_size=40&${API_KEY}`);
   const GAMES_DB = Videogame.findAll({ include: Genre }); // Si quiero que me diga el genero al que pertenece el juego tengo que hacer el include
 
   Promise.all([GAMES_API, GAMES_DB])
@@ -32,7 +32,7 @@ function getGames(req, res, next) {
 
       var array = videogames.concat(GAMES_API_RESPONSE.data.results); //En array concateno la info que tengo en videogames con la de GAMES_API_RESPONSE (El.data es porque para acceder a la informacion necesito hacerlo de esa manera)
       /*  console.log(array); */
-      console.log("Aca esta el resultado", array);
+      /* console.log("Aca esta el resultado", array); */
       /* cconsole.log("Lo que viene de la API", GAMES_API_RESPONSE);*/
       /* console.log("Lo que viene de la DB", GAMES_DB_RESPONSE); */
       return res.send(array);
@@ -66,7 +66,7 @@ function createGame(req, res, next) {
     genres,
     platforms,
   };
-  console.log("Este es el newGame", newGame);
+  /* console.log("Este es el newGame", newGame); */
 
   return Videogame.create(newGame)
     .then((response) => {

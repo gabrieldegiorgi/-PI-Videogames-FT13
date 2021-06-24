@@ -12,14 +12,6 @@ import {
   sortByRatingDesc,
 } from "../../Redux/actions/index.js";
 
-const genres = [
-  { id: 1, name: "Action" },
-  { id: 2, name: "Adventure" },
-  { id: 3, name: "RPG" },
-  { id: 4, name: "Strategy" },
-  { id: 5, name: "Shooter" },
-  { id: 6, name: "Casual" },
-];
 
 const sort = [
   { id: 1, name: "A-Z" },
@@ -29,6 +21,8 @@ const sort = [
 ];
 
 function Navbar() {
+
+  const genres = useSelector((state) => state.videogamesReducer.genres.data);
   const allVideogames = useSelector(
     (state) => state.videogamesReducer.allVideogames.data
   );
@@ -87,7 +81,7 @@ function Navbar() {
         <div className="genre-drop-downs">
           <Dropdown
             title="Genre" //El dropdown multiselect funciona llenando a select a medida que el usuario selecciona generos
-            items={genres} //Los generos que le paso son los que estan declarados mas arriba en la constante
+            items={genres && genres } //Los generos que le paso son los que estan declarados mas arriba en la constante
             multiselect
             selection={selection}
             setSelection={setSelection}

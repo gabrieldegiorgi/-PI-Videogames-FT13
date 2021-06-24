@@ -3,17 +3,9 @@ import { validate } from "../../../../utils";
 import "./Form.css";
 import { RiCloseCircleFill } from "react-icons/ri";
 import { createVideogame } from "../../../../Redux/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Dropdown from "../../../Dropdown/Dropdown.js";
 
-const genres = [
-  { id: 1, name: "Aventura" },
-  { id: 2, name: "Accion" },
-  { id: 3, name: "Shooter" },
-  { id: 4, name: "RPG" },
-  { id: 5, name: "Strategy" },
-  { id: 6, name: "Casual" },
-];
 
 const platforms = [
   { id: 1, name: "PC" },
@@ -25,6 +17,7 @@ const platforms = [
 ];
 
 function Form({ showModal, setShowModal }) {
+  const genres = useSelector((state) => state.videogamesReducer.genres.data);
   const [errors, setErrors] = useState({});
   const [genresSelected, setGenresSelected] = useState([]);
   const [platformsSelected, setPlatformsSelected] = useState([]);
@@ -45,7 +38,7 @@ function Form({ showModal, setShowModal }) {
 
     array = genresSelected.map((g) => g.name);
 
-    console.log(input.genres)
+    console.log(input.genres);
 
     setInput({
       ...input,
@@ -156,7 +149,7 @@ function Form({ showModal, setShowModal }) {
               <div className="row-element">
                 <Dropdown
                   title="genres"
-                  items={genres}
+                  items={genres && genres}
                   multiselect
                   selection={genresSelected}
                   setSelection={setGenresSelected}

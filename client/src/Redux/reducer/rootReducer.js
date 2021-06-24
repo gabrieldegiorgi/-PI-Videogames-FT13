@@ -7,9 +7,6 @@ import {
 } from "../../utils/index.js";
 import { sortAlphabeticallyAsc } from "../actions/index.js";
 import {
-  VIDEOGAMES_LIST_REQUEST,
-  VIDEOGAMES_LIST_SUCCESS,
-  VIDEOGAMESS_LIST_FAIL,
   VIDEOGAME_CREATED_REQUEST,
   VIDEOGAME_CREATED_SUCCESS,
   VIDEOGAME_CREATED_FAIL,
@@ -24,6 +21,12 @@ import {
   SORT_ALPHABETICALLY_ASC,
   SORT_ALPHABETICALLY_DESC,
   FILTER_BY_GENRE,
+  SET_VIDEOGAMES_REQUEST,
+  SET_VIDEOGAMES_SUCCESS,
+  SET_VIDEOGAMES_FAIL,
+  SET_GENRES_REQUEST,
+  SET_GENRES_SUCCESS,
+  SET_GENRES_FAIL,
 } from "../constants/index.js";
 
 const initialState = {
@@ -32,28 +35,49 @@ const initialState = {
   videogameDetails: { loading: false, data: {} },
   videogameCreated: { loading: false, data: {} },
   videogamesSearch: { loading: false, data: [] },
+  genres: { loading: false, data: [] },
 };
 
 export const videogamesReducer = (state = initialState, action) => {
   switch (action.type) {
     //LIST GAMES
-    case VIDEOGAMES_LIST_REQUEST:
+    case SET_VIDEOGAMES_REQUEST:
       return {
         ...state,
         videogames: { loading: true },
         allVideogames: { loading: true },
       };
-    case VIDEOGAMES_LIST_SUCCESS:
+    case SET_VIDEOGAMES_SUCCESS:
+      console.log("Este es el action.payload", action.payload);
       return {
         ...state,
         videogames: { loading: false, data: action.payload },
         allVideogames: { loading: false, data: action.payload },
       };
-    case VIDEOGAMESS_LIST_FAIL:
+    case SET_VIDEOGAMES_FAIL:
       return {
         ...state,
         videogames: { loading: false, error: action.payload },
         allVideogames: { loading: false, error: action.payload },
+      };
+
+    //GENRES
+
+    case SET_GENRES_REQUEST:
+      return {
+        ...state,
+        genres: { loading: true },
+      };
+    case SET_GENRES_SUCCESS:
+      console.log("Este es el action.payload", action.payload);
+      return {
+        ...state,
+        genres: { loading: false, data: action.payload },
+      };
+    case SET_GENRES_FAIL:
+      return {
+        ...state,
+        genres: { loading: false, error: action.payload },
       };
 
     // CREATED GAME
