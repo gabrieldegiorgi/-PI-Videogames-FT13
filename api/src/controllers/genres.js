@@ -9,8 +9,7 @@ function getGenres(req, res, next) {
   console.log("Entre a genres");
   Genre.findAll({ include: Videogame }) //Busco los generos de la base datos
     .then((genres) => {
-      if (!genres.length) {
-        //Si no hay generos en la base de datos, los voy a buscar con el axis
+      if (!genres.length) {//Si no hay generos en la base de datos, los voy a buscar con el axios        
         axios
           .get(`${GENRE_URL}?${API_KEY}`) //Hago el llamado a la API con la API KEY
           .then((response) => {

@@ -1,3 +1,6 @@
+//Se usa desde el Front
+
+/* 
 function paginate(array, page) {
   // page = 3 // page = 5
   if (array) {
@@ -27,3 +30,4 @@ function paginate(array, page) {
 }
 
 module.exports = { paginate };
+ */

@@ -15,12 +15,12 @@ export const paginate = (array, page) => {
       pagination.prev = page - 1; //2 //4
     }
     if (endIndex < array.length) {
-      //Si el indice de pokemons es mayor al arreglo ya no hay mas pokemons para mostrar
+      //Si el indice de videogames es mayor al arreglo ya no hay mas videogames para mostrar
       pagination.next = page + 1; //4 // 6
     }
     pagination.count = Math.ceil(array.length / limit);
     result.pagination = pagination;
-    result.result = array.slice(startIndex, endIndex); //Voy a mostrar los pokemons desde el 16 hasta el 24 // 32 al 40
+    result.result = array.slice(startIndex, endIndex); //Voy a mostrar los videogames desde el 16 hasta el 24 // 32 al 40
 
     /* pagination = {
     count: arreglo / limit ---> 3
@@ -54,6 +54,7 @@ export const filterByGenre = (array, videogame) => {
 };
 
 export const sortAlphabetically = (array) => {
+
   const alphabeticallyFiltered = [...array];
   
   alphabeticallyFiltered.sort((a, b) => (a.name < b.name ? 1 : -1));
@@ -63,7 +64,7 @@ export const sortAlphabetically = (array) => {
 
 export const orderByRating = (array) => {
   const ratingFiltered = [...array];
-  console.log(ratingFiltered, "esto es boca")
+/*   console.log(ratingFiltered) */
   ratingFiltered.sort((a, b) => (a.rating < b.rating ? 1 : -1));
   
   return ratingFiltered;

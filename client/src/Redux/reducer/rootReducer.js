@@ -182,10 +182,10 @@ export const videogamesReducer = (state = initialState, action) => {
         videogames: {
           loading: false,
           data: state.allVideogames.data.filter((v) =>
-            filterByGenre(action.payload, v)
+            filterByGenre(action.payload, v) //El action.payload son los generos que selecciono el usuario del DropDown y la "v" representa el elemento que se itera en el arreglo
           ),
         },
-      }; //
+      }; 
     }
   }
 };

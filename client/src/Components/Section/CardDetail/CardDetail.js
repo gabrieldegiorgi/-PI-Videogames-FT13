@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 import "./CardDetail.css";
 
 function CardDetail() {
+  
   const dispatch = useDispatch();
   const videogame = useSelector(
     (state) => state.videogamesReducer.videogameDetails.data
@@ -19,6 +20,7 @@ function CardDetail() {
   useEffect(() => {
     dispatch(getVideogameDetails(id));
   }, []);
+
   console.log("Esta es la data POSTA", videogame);
   return (
     <div className="card-detail">
